@@ -1,4 +1,4 @@
-import { URL } from api.js ;
+/*import { URL } from api.js ;
 //pour voir les travaux d'une maniere dynamique
 const affiche = async () => {
     const list = await fetch ( URL + "/works", {
@@ -21,7 +21,7 @@ let titre=document.createElement("figcaption");
 figure.appendChild(image);
 figure.appendChild(titre);
 }
-
+*/
 
 
 
