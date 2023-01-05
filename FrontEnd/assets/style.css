@@ -137,9 +137,43 @@ li:hover {
 	width: 100%;
 
 }
+.filtres{
+	display: flex;
+	justify-content: center;
+    width: 200%;
+}
+button{
+	border-radius: 60px;
+	font-size: 1em;
+	color: #1D6154;
+    border: 1px solid #1D6154;
+	height: 2.75em;
+	font-family: 'Syne';
+	font-weight: 700;
+	background-color: #FFFEF8;
+	margin-left: 10px;
+	
+}
+button:active, :focus{
+	background-color:#1D6154 ;
+	color: #FFFEFF;
+}
+.btn-tout{
+    width: 6em;
+}
+.btn-objets{
+	width: 7em;
+
+}
+.btn-appartements{
+	width: 10em;
+}
+.btn-hotels{
+	width: 14em;
+}
 #contact {
 	width: 50%;
-margin: auto;
+    margin: auto;
 }
 #contact > * {
 	text-align: center;

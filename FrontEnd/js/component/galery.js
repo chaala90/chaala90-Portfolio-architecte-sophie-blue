@@ -1,4 +1,3 @@
-/*import { URL } from api.js ;
 //pour voir les travaux d'une maniere dynamique
 const affiche = async () => {
     const list = await fetch ( URL + "/works", {
@@ -10,43 +9,29 @@ const affiche = async () => {
     }) 
     .then((res) => res.json());
     return list;
+   // console.log(list);
 }
-//creations des 3 elements 
-image.src=list[i].imageUrl;
-titre= list[i].title;
-for (let i = 0; i <= id-1; i++) {
+//creations des 3 elements et la boucle pour les 11 elt
+for (let i = 0; i <liste.length; i++) {
+const gallery = document.querySelector("#gallery");
 let figure = document.createElement("figure");
-let image=document.createElement("img");
-let titre=document.createElement("figcaption");
-figure.appendChild(image);
-figure.appendChild(titre);
+let img=document.createElement("img");
+img.src=list[i].imageUrl;
+let title=document.createElement("figcaption");
+title.innerHTML= list[i].title;
+gallery.appendChild(figure).appendChild(img);
+gallery.appendChild(figure).appendChild(figcaption);
 }
-*/
+//fonction filtre
 
+const tout = document.querySelector(".btn-tout");
+const objets = document.querySelector(".btn-objets");
+const appartement = document.querySelector(".btn-appartements");
+const hotels = document.querySelector(".btn-hotels");
 
-
-
-
-
-
-
-
-
-   //affiche()
-/*const galery = (list) => {
-    let galery = document.querySelector(".gallery");
-    list.map((elt)=> {
-        let createimg = createelement()
-    })
-    createelement
-    appendchild
-
-    //creer les elements html dans la fonction
-    //modifier tableau
-    let tab_galery = new Set([]);
-    for (let i of images.children) {
-        //recuperer l'attribut class qui se trouve dans images
-        const id_images = Number (i.getAttribute("class").split("-").pop())
-        
-    }
-}*/
+tout.addEventListener("click", function () {
+    /*const  = list.filter(function () {*/
+        return list[i];
+   
+});
+;
