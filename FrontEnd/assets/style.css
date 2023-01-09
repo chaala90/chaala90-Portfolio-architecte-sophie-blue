@@ -154,7 +154,7 @@ button{
 	margin-left: 10px;
 	
 }
-button:active, :focus{
+button:active, :focus {
 	background-color:#1D6154 ;
 	color: #FFFEFF;
 }

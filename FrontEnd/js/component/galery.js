@@ -1,37 +1,73 @@
 //pour voir les travaux d'une maniere dynamique
 const affiche = async () => {
-    const list = await fetch ( URL + "/works", {
+    const list = await fetch(URL + "/works", {
         method: "GET",
-        headers:{
-          "content-type": "application/json",  
+        headers: {
+            "content-type": "application/json",
         }
 
-    }) 
-    .then((res) => res.json());
+    })
+        .then((res) => res.json());
     return list;
-   // console.log(list);
+    // console.log(list);
 }
 //creations des 3 elements et la boucle pour les 11 elt
-for (let i = 0; i <liste.length; i++) {
-const gallery = document.querySelector("#gallery");
-let figure = document.createElement("figure");
-let img=document.createElement("img");
-img.src=list[i].imageUrl;
-let title=document.createElement("figcaption");
-title.innerHTML= list[i].title;
-gallery.appendChild(figure).appendChild(img);
-gallery.appendChild(figure).appendChild(figcaption);
+const afficheGalleries = async () => {
+    const work = await affiche();
+    for (let i = 0; i < work.length; i++) {
+        const gallery = document.querySelector("#gallery");
+        const figure = document.createElement("figure");
+        gallery.appendChild(figure);
+        let img = document.createElement("img");
+        figure.appendChild(img);
+        img.src = work[i].imageUrl;
+        let title = document.createElement("figcaption");
+        figure.appendChild(title);
+        title.innerHTML = work[i].title;
+    }
 }
 //fonction filtre
+const filrer = async () => {
+    const categories = await fetch(URL + "/categories", {
+        method: "GET",
+        headers: {
+            "content-type": "application/json",
+        }
 
-const tout = document.querySelector(".btn-tout");
-const objets = document.querySelector(".btn-objets");
-const appartement = document.querySelector(".btn-appartements");
-const hotels = document.querySelector(".btn-hotels");
+    })
+        .then((res) => res.json());
+    return categories[i].nom;
+}
+export { afficheGalleries, affiche };
 
-tout.addEventListener("click", function () {
-    /*const  = list.filter(function () {*/
-        return list[i];
-   
+//Function de modification de l'element actif du menu de filtres
+function activation(element) {
+    console.log(element);
+    document.querySelector(".filtres .active").classList.remove("active");
+    document.getElementById(element).classList.add("active");
+}
+const btntout = document.querySelector("#btn-tout");
+btntout.addEventListener("click", function () {
+    document.querySelector('.gallery');
+    activation("btn-tout");
+
 });
-;
+const btnobjets = document.querySelector("#btn-objets");
+btnobjets.addEventListener("click", function () {
+    //const filter_object= list.filter(function () {
+    const filter_objects = .map(piece => piece.nom);
+
+});
+const btnappartement = document.querySelector("#btn-appartements");
+btnappartement.addEventListener("click", function () {
+    //const filter_appartement = list.filter(function () {
+    const filterappartement = work.map(piece => piece.nom);
+
+});
+
+const btnhotels = document.querySelector("#btn-hotels");
+btnhotels.addEventListener("click", function () {
+    //const filter_hotel= list.filter(function () {
+    const filter_hotel = work.map(piece => piece.nom);
+
+});
