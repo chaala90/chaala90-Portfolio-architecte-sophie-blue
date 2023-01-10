@@ -1,9 +1,7 @@
-import { update } from "./component/edit" ;
-import { URL } from "./component/api";
-import {  } from "./component/galery";
-
-import { afficheGalleries, affiche} from "./component/galery.js";
+import { afficheGalleries, affiche, affichecategory, func} from "./component/galery.js";
 afficheGalleries();
+affichecategory();
+func();
 
 
 

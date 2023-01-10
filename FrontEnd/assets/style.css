@@ -140,7 +140,8 @@ li:hover {
 .filtres{
 	display: flex;
 	justify-content: center;
-    width: 200%;
+    width: 100%;
+    margin: 40px;
 }
 button{
 	border-radius: 60px;
@@ -152,25 +153,16 @@ button{
 	font-weight: 700;
 	background-color: #FFFEF8;
 	margin-left: 10px;
+	padding-right: 25px;
+    padding-left: 25px;
 	
 }
 button:active, :focus {
 	background-color:#1D6154 ;
 	color: #FFFEFF;
+	
 }
-.btn-tout{
-    width: 6em;
-}
-.btn-objets{
-	width: 7em;
 
-}
-.btn-appartements{
-	width: 10em;
-}
-.btn-hotels{
-	width: 14em;
-}
 #contact {
 	width: 50%;
     margin: auto;

@@ -1,4 +1,5 @@
 //pour voir les travaux d'une maniere dynamique
+import { URL } from "./api.js";
 const affiche = async () => {
     const list = await fetch(URL + "/works", {
         method: "GET",
@@ -13,22 +14,44 @@ const affiche = async () => {
 }
 //creations des 3 elements et la boucle pour les 11 elt
 const afficheGalleries = async () => {
-    const work = await affiche();
+    const work =  await affiche();
     for (let i = 0; i < work.length; i++) {
-        const gallery = document.querySelector("#gallery");
+        const gallery = document.querySelector(".gallery");
         const figure = document.createElement("figure");
         gallery.appendChild(figure);
         let img = document.createElement("img");
         figure.appendChild(img);
-        img.src = work[i].imageUrl;
+       // img.src = work[i].imageUrl;
+        img.setAttribute("crossorigin", "anonymous"); //to prevent ERR_BLOCKED_BY_RESPONSE.NotSameOrigin
+        img.setAttribute("src", work[i].imageUrl);
+        
         let title = document.createElement("figcaption");
-        figure.appendChild(title);
         title.innerHTML = work[i].title;
+        figure.appendChild(title);
     }
 }
-//fonction filtre
-const filrer = async () => {
-    const categories = await fetch(URL + "/categories", {
+
+const afficheGalleriesfiltre = async (galerie) => {
+    const work = galerie;
+    for (let i = 0; i < work.length; i++) {
+        const gallery = document.querySelector(".gallery");
+        const figure = document.createElement("figure");
+        gallery.appendChild(figure);
+        let img = document.createElement("img");
+        figure.appendChild(img);
+       // img.src = work[i].imageUrl;
+        img.setAttribute("crossorigin", "anonymous"); //to prevent ERR_BLOCKED_BY_RESPONSE.NotSameOrigin
+        img.setAttribute("src", work[i].imageUrl);
+        
+        let title = document.createElement("figcaption");
+        title.innerHTML = work[i].title;
+        figure.appendChild(title);
+    }
+}
+
+
+const filtrer = async () => {
+    const category = await fetch(URL + "/categories", {
         method: "GET",
         headers: {
             "content-type": "application/json",
@@ -36,38 +59,62 @@ const filrer = async () => {
 
     })
         .then((res) => res.json());
-    return categories[i].nom;
+    return category;
 }
-export { afficheGalleries, affiche };
+const affichecategory = async (elt_category) => {
+    const list_category = await filtrer ();
 
-//Function de modification de l'element actif du menu de filtres
-function activation(element) {
-    console.log(element);
-    document.querySelector(".filtres .active").classList.remove("active");
-    document.getElementById(element).classList.add("active");
+const gallery = document.querySelector(".gallery");
+const creerdiv = document.createElement("div");
+/*creerdiv.classList.add("filtres");*/
+const btnall = document.createElement("button");
+btnall.innerHTML= "Tous";
+btnall.classList.add("bouton_filtre");
+creerdiv.appendChild(btnall);
+//pour cibler les boutons
+btnall.setAttribute("data-name", "Tous");
+
+for (let i = 0; i < list_category.length; i++) {
+    const btn = document.createElement("button");
+    btn.innerHTML= list_category[i].name;
+    creerdiv.appendChild(btn);
+    btn.classList.add("bouton_filtre");
+    btn.setAttribute("data-name", list_category[i].name );
 }
-const btntout = document.querySelector("#btn-tout");
-btntout.addEventListener("click", function () {
-    document.querySelector('.gallery');
-    activation("btn-tout");
+//inserer cote a cote avant gallery
+gallery.insertAdjacentElement("beforebegin",creerdiv);
 
-});
-const btnobjets = document.querySelector("#btn-objets");
-btnobjets.addEventListener("click", function () {
-    //const filter_object= list.filter(function () {
-    const filter_objects = .map(piece => piece.nom);
 
-});
-const btnappartement = document.querySelector("#btn-appartements");
-btnappartement.addEventListener("click", function () {
-    //const filter_appartement = list.filter(function () {
-    const filterappartement = work.map(piece => piece.nom);
+}
+//fonction filtrer
+const func = async () =>{
+    const data_work = await affiche();
+    
+    let boutons = document.getElementsByClassName("bouton_filtre");
+    for (let i=0; i<boutons.length; i++ ){
+        const elt = boutons[i];
+        boutons[i].addEventListener("click", () =>{
+            console.log(data_work);
+            if (elt.getAttribute("data-name") != "Tous") {
+                console.log("hgfd");
+                document.querySelector(".gallery").innerHTML="";
+                const objet = data_work.filter(compteur => compteur.category.name === elt.dataset.name);
+                return  afficheGalleriesfiltre(objet);
+            
 
-});
+                
+            }
+            
 
-const btnhotels = document.querySelector("#btn-hotels");
-btnhotels.addEventListener("click", function () {
-    //const filter_hotel= list.filter(function () {
-    const filter_hotel = work.map(piece => piece.nom);
+           else {
+            document.querySelector(".gallery").innerHTML="";
+                return afficheGalleries();
+                
+            }
+        })
+        
+    }
+}
 
-});
+
+export { afficheGalleries, affiche, affichecategory, filtrer, func };
