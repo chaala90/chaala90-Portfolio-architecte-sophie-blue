@@ -94,9 +94,14 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
-
+a {
+	text-decoration: none;
+	color: #000;
+	
+}
 li:hover {
 	color: #B1663C;
+	
 }
 #introduction {
 	display: flex;
@@ -193,6 +198,11 @@ button:active, :focus {
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#contact a{
+	color: #3D3D3D;
+	text-align: center;
+
 }
 
 input[type="submit"]{

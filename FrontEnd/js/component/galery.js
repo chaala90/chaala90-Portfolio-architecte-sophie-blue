@@ -22,9 +22,8 @@ const afficheGalleries = async () => {
         let img = document.createElement("img");
         figure.appendChild(img);
        // img.src = work[i].imageUrl;
-        img.setAttribute("crossorigin", "anonymous"); //to prevent ERR_BLOCKED_BY_RESPONSE.NotSameOrigin
+        img.setAttribute("crossorigin", "anonymous");
         img.setAttribute("src", work[i].imageUrl);
-        
         let title = document.createElement("figcaption");
         title.innerHTML = work[i].title;
         figure.appendChild(title);
@@ -39,10 +38,10 @@ const afficheGalleriesfiltre = async (galerie) => {
         gallery.appendChild(figure);
         let img = document.createElement("img");
         figure.appendChild(img);
-       // img.src = work[i].imageUrl;
-        img.setAttribute("crossorigin", "anonymous"); //to prevent ERR_BLOCKED_BY_RESPONSE.NotSameOrigin
+       // cette ligne n'affiche pas les images: img.src = work[i].imageUrl;
+       //to prevent ERR_BLOCKED_BY_RESPONSE.NotSameOrigin
+        img.setAttribute("crossorigin", "anonymous"); 
         img.setAttribute("src", work[i].imageUrl);
-        
         let title = document.createElement("figcaption");
         title.innerHTML = work[i].title;
         figure.appendChild(title);
@@ -66,7 +65,7 @@ const affichecategory = async (elt_category) => {
 
 const gallery = document.querySelector(".gallery");
 const creerdiv = document.createElement("div");
-/*creerdiv.classList.add("filtres");*/
+creerdiv.classList.add("filtres");
 const btnall = document.createElement("button");
 btnall.innerHTML= "Tous";
 btnall.classList.add("bouton_filtre");
@@ -83,8 +82,6 @@ for (let i = 0; i < list_category.length; i++) {
 }
 //inserer cote a cote avant gallery
 gallery.insertAdjacentElement("beforebegin",creerdiv);
-
-
 }
 //fonction filtrer
 const func = async () =>{
@@ -96,25 +93,17 @@ const func = async () =>{
         boutons[i].addEventListener("click", () =>{
             console.log(data_work);
             if (elt.getAttribute("data-name") != "Tous") {
-                console.log("hgfd");
+                //console.log("show");
                 document.querySelector(".gallery").innerHTML="";
                 const objet = data_work.filter(compteur => compteur.category.name === elt.dataset.name);
-                return  afficheGalleriesfiltre(objet);
-            
-
-                
+                return  afficheGalleriesfiltre(objet); 
             }
-            
-
            else {
             document.querySelector(".gallery").innerHTML="";
-                return afficheGalleries();
-                
+                return afficheGalleries(); 
             }
         })
         
     }
 }
-
-
 export { afficheGalleries, affiche, affichecategory, filtrer, func };

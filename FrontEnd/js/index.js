@@ -2,6 +2,9 @@ import { afficheGalleries, affiche, affichecategory, func} from "./component/gal
 afficheGalleries();
 affichecategory();
 func();
+import {login_user} from "./component/login.js";
+login_user();
+//import {} from "./component/login"
 
 
 
