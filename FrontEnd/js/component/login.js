@@ -3,13 +3,16 @@ const form = document.getElementById('form');
 //au clic sur le bouton
 // Récupération des pièces éventuellement stockées dans le localStorage
 const utilisateur = window.localStorage.getItem("user");
+const login = () =>{
 form.addEventListener("submit", (e) => {
   // Désactivation du comportement par défaut du navigateur
   e.preventDefault();
-  const email_value = document.getElementById('email_field').value;
+const email_value = document.getElementById('email_field').value;
 const password_value = document.getElementById('password_field').value;
 const submit_button = document.getElementById('submit_button');
-})
+const user = new FormData(form);
+  
+})}
 //fonction login
 const login_user = async (e) => {
   const response = await fetch(URL + "/users/login", {
@@ -21,11 +24,9 @@ const login_user = async (e) => {
   })
     .then((res) => res.json());
   return response;
-}
-const user = {
-  email: e.target.queryselector("[email]").value,
-  password: e.target.queryselector("[password]").value,
-  };
+
+const email_value = document.getElementById('email_field').value;
+const password_value = document.getElementById('password_field').value;
   //ecrire les valeurs dans le local storage
   window.localStorage.setItem("email", email_value);
   window.localStorage.setItem("password", password_value);
@@ -38,5 +39,5 @@ const user = {
     else {
       error.innerText = " Erreur dans l’identifiant ou le mot de passe";
     }
-
-export {login_user};
+  }
+export {login_user, login};
