@@ -58,6 +58,33 @@ header {
 	justify-content: space-between;
 	margin: 50px 0
 }
+/*page edit*/
+.blackheader{
+	max-width: 1140px;
+	width: 100%;
+	height: 60px;
+	margin: 0 auto;
+	padding: 0px;
+    position: fixed;
+    top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #000;
+}
+.row{
+	display: flex;
+	color:#FFFfFF;
+	font-size: 16px;
+
+}
+.row span{
+	margin-left: 10px;
+}
+.modifier4{
+	display: flex;
+}
+/************************/
 section {
 	margin: 50px 0
 }
@@ -68,7 +95,8 @@ h1{
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: #B1663C;
+	margin-top:20px;
 }
 
 h1 > span {
@@ -88,11 +116,15 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
+	margin-top: 20px;
 
 }
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+}
+#logout{
+	display: none;
 }
 a {
 	text-decoration: none;

@@ -1,10 +1,19 @@
 import { afficheGalleries, affiche, affichecategory, func} from "./component/galery.js";
-afficheGalleries();
-affichecategory();
-func();
-import {login, login_func} from "./component/login.js";
-login_func();
-login();
+import {update} from "./component/edit.js";
+const token = sessionStorage.getItem("userToken");
+if (token){
+  update();
+  //document.getElementById("hidden_login").innerText = "logout";
+}
+else {
+  afficheGalleries();
+  affichecategory();
+  func();
+}
+
+
+
+
 
 
 
