@@ -25,7 +25,7 @@ const update = () => {
 //creation  des autres elements
 const modifier2 = document.querySelector(".modifier2");
 const modifier_photo = document.createElement("div");
-    modifier_photo.classList.add("modifier");
+    modifier_photo.classList.add("toright");
     modifier_photo.innerHTML=`<i class="fa-regular fa-pen-to-square "></i>
     <span>modifier</span>`;
     modifier2.insertAdjacentElement("beforeend", modifier_photo);

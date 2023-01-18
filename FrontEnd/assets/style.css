@@ -83,6 +83,15 @@ header {
 }
 .modifier4{
 	display: flex;
+	justify-content: center;
+}
+.modifier{
+	
+    font-size: 16px;
+}
+.toright{
+	margin-left: 56px;
+	font-size: 16px;
 }
 /************************/
 section {
@@ -146,6 +155,7 @@ li:hover {
 	display: block;
 	margin: auto;
 	width: 80%;
+	margin-bottom: 15px;
 }
 
 #introduction article {
@@ -153,6 +163,7 @@ li:hover {
 }
 #introduction h2 {
 	margin-bottom: 1em;
+	margin-top: 1em;
 }
 
 #introduction p {
@@ -161,6 +172,7 @@ li:hover {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+	margin: -9px 28px 0 0;
 }
 .gallery {
 	width: 100%;
