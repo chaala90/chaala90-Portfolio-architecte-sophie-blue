@@ -17,39 +17,43 @@
 </head>
 
 <body>
-	<!--MODAL
-		<div id="modal" class="modal-window" aria-hidden="true" role="dialog" aria-modal="false" style="display: none">
-		<div class="modal_wrapper">
-			<button class="js-modal-close">
+	<!--MODAL-->
+	<div id="modal" class="modal-window" aria-hidden="true" role="dialog" aria-modal="false" style="display: none">
+		<div class="modal-wrapper">
+			<button class="modal-close">
 				<i class="fa-solid fa-xmark"></i></button>
-			<h1 id="titlemodal">Galerie photo</h1>
-
-			<div id="modal-portfolio" class="modal-portfolio"></div>
-			<button class="modal-add-button filter-button">Ajouter une photo</button>
-			<button class="modal-delete-button">Supprimer la galerie</button>
+			<div id="open-modal" class="modal-display-gallery">
+				<h1 id="modal-title">Galerie photo</h1>
+				<div class="modal-portfolio-container">
+					<div id="modal-portfolio" class="modal-portfolio"></div>
+				</div>
+			</div>
+			<button class="modal-add">Ajouter une photo</button>
+			<button class="modal-delete">Supprimer la galerie</button>
 		</div>
-		<i class="fa-solid fa-arrows-up-down-left-right"></i>
-		<i class="fa-solid fa-trash-can"></i>-->
-		<header class="modifier1">
-				<h1 ><a href="./index.html"></a>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+	</div>
+	<i class="fa-solid fa-arrows-up-down-left-right"></i>
+	<i class="fa-solid fa-trash-can"></i>
+		<header>
+			<h1><a href="./index.html"></a>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 			</a>
 			<nav>
 				<ul>
 					<li>projets</li>
 					<li>contact</li>
 					<li id='login'><a href="./login.html">login</a></li>
-					<li id= "logout"><a href="./login.html">logout</a></li>
+					<li id="logout"><a href="./login.html">logout</a></li>
 					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 				</ul>
 			</nav>
 		</header>
 		<main>
 			<section id="introduction">
-				<figure class="modifier2">
+				<figure>
 					<img src="./assets/images/sophie-bluel.png" alt="">
 				</figure>
 				<article>
-					<h2 class="modifier3">Designer d'espace</h2>
+					<h2>Designer d'espace</h2>
 					<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
 						livraison finale du chantier.</p>
 					<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
@@ -60,8 +64,11 @@
 				</article>
 			</section>
 			<section id="portfolio">
-				<div class="modifier4"><h2>Mes Projets</h2></div>
+				<div>
+					<h2>Mes Projets</h2>
+				</div>
 				<div class="gallery">
+					
 					<!--supprimer le contenu de gallery pour creer les elts avec js-->
 					<!--<section>
 			<figure>

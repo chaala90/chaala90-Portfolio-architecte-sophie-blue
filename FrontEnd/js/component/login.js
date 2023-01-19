@@ -6,7 +6,7 @@ const passw = formulaire.password;
 let email;
 let password;
 mail.addEventListener("input", (e) =>(email=e.target.value));
-//recupere que j'ai tapé dans le champs et le mettre dans la variable
+//recupere ce que j'ai tapé dans le champs et le mettre dans la variable
 passw.addEventListener("input", (e) =>(password=e.target.value));
 formulaire.addEventListener("submit", (e)=>{
     e.preventDefault();

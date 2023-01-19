@@ -1,5 +1,8 @@
 /* ============ MODAL WINDOW ============ */
-
+a {
+	text-decoration: none;
+	color: #000;
+}
 .modal-window {
     position: fixed;
     top: 0;
@@ -17,20 +20,28 @@
   .modal-wrapper {
     position: relative;
     background-color: #fff;
-    /*border-radius: 10px;*/
-    width: 630px;
-    height: 730PX;
-    max-width: calc(100vw - 20px);
-    max-width: calc(100vh - 20px);
+    margin:20% auto;
+    border-radius: 10px;
+    /*width: 630px;
+    height: 730PX;*/
+    max-width: calc(40vw - 20px);
+    max-height: calc(100vh - 20px);
     overflow: auto;
     padding: 20px;
 
-   /* animation: slideFromTop 0.5s both;*/
   }
-  #titlemodal{
+  .modal-close{
+    border: none;
+    position: absolute;
+    right: 0;
+
+  }
+  #modal-title{
     font-size: 26px;
     color: #000;
     font-family: 'Work Sans', sans-serif;
     text-align: center;
+    font-weight: 100;
   }
+
  

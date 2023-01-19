@@ -65,8 +65,6 @@ header {
 	height: 60px;
 	margin: 0 auto;
 	padding: 0px;
-    position: fixed;
-    top: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -80,6 +78,7 @@ header {
 }
 .row span{
 	margin-left: 10px;
+	color: #FFFfFf;
 }
 .modifier4{
 	display: flex;
