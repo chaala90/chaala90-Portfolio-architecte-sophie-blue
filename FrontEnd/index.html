@@ -17,23 +17,62 @@
 </head>
 
 <body>
-	<!--MODAL-->
-	<div id="modal" class="modal-window" aria-hidden="true" role="dialog" aria-modal="false" style="display: none">
+	<!--MODAL1-->
+	<div id="modal1" class="modal-window" aria-hidden="true" role="dialog" aria-modal="false" style="display: none">
 		<div class="modal-wrapper">
 			<button class="modal-close">
 				<i class="fa-solid fa-xmark"></i></button>
 			<div id="open-modal" class="modal-display-gallery">
 				<h1 id="modal-title">Galerie photo</h1>
-				<div class="modal-portfolio-container">
-					<div id="modal-portfolio" class="modal-portfolio"></div>
+				<div class="modal-gallery_container">
+					<div id="modal-gallery" class="modal-gallery"></div>
 				</div>
 			</div>
+			<div class="column_button">
 			<button class="modal-add">Ajouter une photo</button>
 			<button class="modal-delete">Supprimer la galerie</button>
 		</div>
+		</div>
 	</div>
-	<i class="fa-solid fa-arrows-up-down-left-right"></i>
-	<i class="fa-solid fa-trash-can"></i>
+	<!--Ajout modal 2-->
+		<div id="modal2"  style="display: none">
+			<div class="modal-wrapper">
+			<div class="icones">
+				<div><i class="fa-solid fa-arrow-left"></i></div>
+				<div><i class="fa-solid fa-xmark close-cancel"></i></div>
+			</div>
+			<div class="centrer">
+			<h2 class="title">Ajout Photo</h2>
+			<form id="addImage">
+				<div class="addBox">
+					<div class="image">
+						<img src="" alt="" id="imgPreview">
+					</div>
+					<i class="fa-regular fa-image"></i>	
+					<input type="file" name="image" accept="/image*" id="addButton" required>				
+				</input>
+					<button class="addImg">+ Ajouter photo</button>
+					<p class="typeImg">jpg, png : 4mo max</p>
+				</div>
+				<div class='column'>
+				<label>Titre</label>
+				<input name="title" class="imageTitle" type="text" required>
+				<label>Catégorie</label>
+				<select name="category" id="modalCategory" required>
+					<option value="1">Objets</option>
+					<option value="2">Appartements</option>
+					<option value="3">Hôtel & restaurants</option>
+				</select>
+				<div class="centrer">
+					<button class="valider" type="submit">Valider</button>
+				</div>
+			</div>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>
+	</div>
 		<header>
 			<h1><a href="./index.html"></a>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 			</a>
@@ -64,12 +103,10 @@
 				</article>
 			</section>
 			<section id="portfolio">
-	
 					<h2>Mes Projets</h2>
 				<div class="gallery">
-					
-					<!--supprimer le contenu de gallery pour creer les elts avec js-->
-					<!--<section>
+			<!--supprimer le contenu de gallery pour creer les elts avec js-->
+			<!--<section>
 			<figure>
 				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
 				<figcaption>Abajour Tahina</figcaption>
@@ -130,7 +167,6 @@
 				</form>
 			</section>
 		</main>
-
 		<footer>
 			<nav>
 				<ul>

@@ -6,7 +6,6 @@ const affiche = async () => {
         headers: {
             "content-type": "application/json",
         }
-
     })
         //recuperer la reponse au format JSON
         .then((res) => res.json());

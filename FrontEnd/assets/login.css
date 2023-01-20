@@ -86,6 +86,10 @@ li:hover {
 #contact label {
 	margin: 2em 0 1em 0;
 }
+#error{
+	color: #D65353;
+	text-align: center;
+}
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
