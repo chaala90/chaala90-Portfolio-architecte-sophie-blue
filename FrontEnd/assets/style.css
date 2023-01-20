@@ -70,6 +70,15 @@ header {
 	align-items: center;
 	background-color: #000;
 }
+.deplacer2{
+	position: absolute;
+    right: 29em;
+    top: 41.25em;
+}
+.deplacer1{
+	margin-left: 56px;
+}
+
 .row{
 	display: flex;
 	color:#FFFfFF;
@@ -80,18 +89,12 @@ header {
 	margin-left: 10px;
 	color: #FFFfFf;
 }
-.modifier4{
-	display: flex;
-	justify-content: center;
-}
+
 .modifier{
 	
     font-size: 16px;
 }
-.toright{
-	margin-left: 56px;
-	font-size: 16px;
-}
+
 /************************/
 section {
 	margin: 50px 0
