@@ -1,5 +1,5 @@
 import { URL } from "./api.js";
-import { afficheGalleries } from "./galery.js";
+import { afficheGalleries, affiche } from "./galery.js";
 //import{login} from "./login.js"
 const update = () => {
     //login et logout
@@ -60,6 +60,7 @@ const update = () => {
 for (let i = 0; i < modifier.length; i++) {
     modifier[i].addEventListener("click", () => {
         open_modale();
+        afficheGalleries_modal();
     });
   }
   //fermer modale avec l'icone x
@@ -70,6 +71,7 @@ for (let i = 0; i < modifier.length; i++) {
   const close = document.querySelector(".modal-close");
   close.addEventListener("click", () => {
     close_modale();
+    
 });
 //close
 /*window.addEventListener("keydown", function (e) {
@@ -86,16 +88,7 @@ for (let i = 0; i < modifier.length; i++) {
   }*/
 }  
 //afficher images dans le modal
-const affiche = async () => {
-const list = await fetch(URL + "/works", {
-        method: "GET",
-        headers: {
-            "content-type": "application/json",
-        }
-    })
-        .then((res) => res.json())
-        return list;
-}
+
         const afficheGalleries_modal = async () => {
             const work = await affiche();
             for (let i = 0; i < work.length; i++) {
@@ -103,33 +96,23 @@ const list = await fetch(URL + "/works", {
                 const figure = document.createElement("figure");
                 modal_gallery.appendChild(figure);
                 let img = document.createElement("img");
+                img.classList.add("EditImg");
                 figure.appendChild(img);
                 img.setAttribute("crossorigin", "anonymous");
                 img.setAttribute("src", work[i].imageUrl);
-                figure.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right"></i>
-	            <i class="fa-solid fa-trash-can"></i>`;
+                const div_edit = document.createElement('div');
+                div_edit.classList.add("icons")
+                div_edit.innerHTML=`<i class="fa-solid fa-arrows-up-down-left-right addIcon"></i>
+                <i class="fa-solid fa-trash-can trashIcon"></i>`;
+                figure.appendChild(div_edit);
                 let title = document.createElement("p");
+                title.classList.add('edit_text');
                 title.innerHTML = "editer";
                 figure.appendChild(title);
             }
         }
-        const afficheGalleries_modal2 = async (modall) => {
-            const work = modall;
-            for (let i = 0; i < work.length; i++) {
-                const modal_gallery = document.querySelector("#modal-gallery");
-                const figure = document.createElement("figure");
-                modal_gallery.appendChild(figure);
-                let img = document.createElement("img");
-                figure.appendChild(img);
-                img.setAttribute("crossorigin", "anonymous");
-                img.setAttribute("src", work[i].imageUrl);
-                figure.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right"></i>
-	            <i class="fa-solid fa-trash-can"></i>`;
-                let title = document.createElement("p");
-                title.innerHTML = "editer";
-                figure.appendChild(title);
-            }
-        }
+        
+       
 
 
 export { update };

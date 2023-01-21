@@ -14,7 +14,9 @@ const affiche = async () => {
 }
 //creations des 3 elements et la boucle pour les 11 elt
 //afficher les données sur la page web
+//affiche toute la galerie
 const afficheGalleries = async () => {
+    //recuperer le resultat dans work
     const work = await affiche();
     for (let i = 0; i < work.length; i++) {
         const gallery = document.querySelector(".gallery");
@@ -30,7 +32,7 @@ const afficheGalleries = async () => {
         figure.appendChild(title);
     }
 }
-
+//affiche la galerie en fonction de filtre selectionné
 const afficheGalleriesfiltre = async (galerie) => {
     const work = galerie;
     for (let i = 0; i < work.length; i++) {
