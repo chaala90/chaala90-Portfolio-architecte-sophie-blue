@@ -25,7 +25,7 @@ a {
   border-radius: 10px;
   max-width: calc(50vw - 20px);
   max-height: calc(100vh - 20px);
-  height: 480px;
+  height: 500px;
   overflow: auto;
   padding: 20px;
 
@@ -41,9 +41,10 @@ a {
 #modal-title {
   font-size: 26px;
   color: #000;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Work Sans';
   text-align: center;
   font-weight: 100;
+  margin-bottom: 20px;
 
 }
 
@@ -54,14 +55,14 @@ a {
   ;
 }
 
-.modal-add {
+#modal-add {
   width: 18em;
   height: 3em;
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
-.modal-delete {
+#modal-delete {
   border: none;
   background-color: #ffff;
   color: #D65353;
@@ -101,19 +102,26 @@ a {
   align-items: center;
 }
 
-.title {
+/*.title {
   font-size: 26px;
   color: black;
-  font-weight: 200;
-  margin-bottom: 10px;
-}
+  font-weight: 200 !important;
+  margin-bottom: 15px;
+    margin-top: 10px;
+}*/
 
 #addImage {
   width: 420px;
   height: 170px;
   border-radius: 3px;
   margin-bottom: 12px;
+  
 
+}
+.addImg{
+  color: #306685;
+  background-color: #CBD6DC;
+  border: 1px solid #306685;
 }
 
 .addBox {
@@ -125,6 +133,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .fa-image {
@@ -135,6 +144,13 @@ a {
 #addButton {
   position: absolute;
   top: 13em;
+  right: 11em;
+  color: transparent;
+  border: none;
+}
+#addButton:hover{
+  background-color: transparent;
+  color: transparent;
 }
 
 .typeImg {
@@ -150,31 +166,50 @@ a {
 
 }
 
+
 .imageTitle {
   Width: 420px;
   Height: 51px;
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  background-color: #ffff;
+  color: #306685;
+  border: none !important;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
   /*border: 0.25 solid ;*/
 }
+.imageTitle:hover{
+  background-color: rgb(232, 241, 246);
+  color: #306685;
 
+}
 #modalCategory {
   Width: 420px;
   Height: 76px;
   border-radius: 10px;
   margin-top: 10px;
-  margin-bottom: 10px;
-
+  margin-bottom: 15px;
+  background-color: rgb(232, 241, 246);
+  color: #306685;
+  background-color: #ffff;
+  border: none !important;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 
 }
-
+#modalCategory :hover{
+background-color: #CBD6DC;
+}
 .valider {
   Width: 237px;
   Height: 36px;
   background-color: #A7A7A7;
   color: white;
+  border-color: #A7A7A7;
 
+}
+.valider:hover{
+  background-color: #306685;
 }
 /*images plus petits*/
 .EditImg{
@@ -186,8 +221,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: center;
-  margin-top: 20px;
+  margin-left:20px;
 }
 .icons{
   position: relative;
@@ -225,4 +259,7 @@ a {
 }
 .edit_text{
   margin: 0 0 14px 11px;
+}
+.modal-close2, .previous{
+  font-size: 1.5em;
 }

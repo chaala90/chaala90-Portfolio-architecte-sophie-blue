@@ -41,8 +41,6 @@ const afficheGalleriesfiltre = async (galerie) => {
         gallery.appendChild(figure);
         let img = document.createElement("img");
         figure.appendChild(img);
-        // cette ligne n'affiche pas les images: img.src = work[i].imageUrl;
-        //to prevent ERR_BLOCKED_BY_RESPONSE.NotSameOrigin
         img.setAttribute("crossorigin", "anonymous");
         img.setAttribute("src", work[i].imageUrl);
         let title = document.createElement("figcaption");

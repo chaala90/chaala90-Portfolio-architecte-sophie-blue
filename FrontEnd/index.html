@@ -24,14 +24,11 @@
 				<i class="fa-solid fa-xmark"></i></button>
 			<div id="open-modal" class="modal-display-gallery">
 				<h1 id="modal-title">Galerie photo</h1>
-				<div class="modal-gallery_container">
 					<div id="modal-gallery" class="modal-gallery"></div>
-				</div>
 			</div>
-	
 			<div class="column_button">
-			<button class="modal-add">Ajouter une photo</button>
-			<button class="modal-delete">Supprimer la galerie</button>
+			<button id="modal-add">Ajouter une photo</button>
+			<button id="modal-delete">Supprimer la galerie</button>
 		</div>
 		</div>
 	</div>
@@ -39,11 +36,11 @@
 		<div id="modal2"  style="display: none">
 			<div class="modal-wrapper">
 			<div class="icones">
-				<div><i class="fa-solid fa-arrow-left"></i></div>
-				<div><i class="fa-solid fa-xmark close-cancel"></i></div>
+				<div><i class="fa-solid fa-arrow-left previous"></i></div>
+				<div><i class="fa-solid fa-xmark modal-close2"></i></div>
 			</div>
 			<div class="centrer">
-			<h2 class="title">Ajout Photo</h2>
+			<h2 id="modal-title">Ajout Photo</h2>
 			<form id="addImage">
 				<div class="addBox">
 					<div class="image">
