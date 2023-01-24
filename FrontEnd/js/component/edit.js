@@ -1,5 +1,5 @@
 import { URL } from "./api.js";
-import { afficheGalleries, affiche } from "./galery.js";
+import { afficheGalleries, affiche, addWork } from "./galery.js";
 //import{login} from "./login.js"
 const update = () => {
   //login et logout
@@ -56,11 +56,17 @@ const update = () => {
   const open_modal = () => {
     //e.preventDefault();
     document.getElementById("modal1").style.display = "block";
+   
   }
+  //***********stop propagation où faut mettre??????????????????????? */
+  /*const stopPropagation = (e) => {
+    e.stopPropagation();
+  };*/
   for (let i = 0; i < modifier.length; i++) {
     modifier[i].addEventListener("click", () => {
       open_modal();
       afficheGalleries_modal();
+      document.querySelector(".modal-gallery").innerHTML = "";
     });
   }
   //fermer modale avec l'icone x
@@ -79,9 +85,14 @@ const update = () => {
       close_modal();
     }
   });
+  //fermer en cliquant sur esc
+window.addEventListener('keydown',function(e){
+  if (e.key ==='Escape' || e.key === 'esc'){
+    close_modal();
+  }
+})
 
   //afficher images dans le modal
-
   const afficheGalleries_modal = async () => {
     const work = await affiche();
     for (let i = 0; i < work.length; i++) {
@@ -104,8 +115,6 @@ const update = () => {
       figure.appendChild(title);
     }
   }
-
-}
 //open modal2
 const modal2 = document.getElementById("modal2");
 const open_modal2 = () => {
@@ -117,7 +126,7 @@ modalAdd.addEventListener("click", () => {
   open_modal2();
 });
 
-//previous modal*********ne marche pas*********************************
+//previous modal
 const previous_modal = () => {
   //document.getElementById('modal1').style.display = "block";
   document.getElementById("modal2").style.display = "none";
@@ -136,6 +145,13 @@ close2.addEventListener("click", () => {
   close_modal2();
 
 });
+ //fermer en cliquant sur esc
+ window.addEventListener('keydown',function(e){
+  if (e.key ==='Escape' || e.key === 'esc'){
+    close_modal2();
+  }
+})
+
 //fermer en cliquant n'importe ou
 window.addEventListener("click", (e) => {
   if (e.target == modal2) {
@@ -143,8 +159,9 @@ window.addEventListener("click", (e) => {
   }
 });
 //supprimer une image
-async function delet_img(){
-  const head = new Headers({ "content-type": 'application/json' });
+async function Delete(){
+  const head = new Headers({ "content-type": 'application/json',
+  'accept': '*/*', Authorization: `BEARER  ${token}`});
   const delete_img = {
     method: 'DELETE',
     headers: head
@@ -152,10 +169,60 @@ async function delet_img(){
   const reponse = await fetch(URL + "/works", delete_img)
   .then((res) => res.json());
 }
-let supp_image = document.querySelector(".trashIcon");
+//recuperation des données de formulaire et appel fonction d'ajout
+const  formulaire2= document.getElementById('addImage');
+formulaire2.addEventListener('submit', (e)=>{
+e.preventDefault();
+const formData = new FormData(e.target);
+/*Envoyer(formData);*/
+addWork(formData);
+})
+}
+/*const supprimer = async ()=>{
+  const trash = await Delete();
+  for (let i=0; i<11; i++){
+    const trashIcon=document.querySelector('.trashIcon');
+    trashIcon.addEventListener('click', ()=>{
+      if (figure.getAttribute("data-id")){
+        figure.remove(dataset.id)
 
+      }
+  })
 
-
-
+  }
+}
+//envoyer formulaire ajout photo
+/*async function Envoyer(formdata){
+  try{
+    const token = sessionStorage.getItem("userToken");
+  const head = new Headers({ Authorization: `BEARER  ${token}`});
+  const send_img = {
+    method: 'POST',
+    headers: head,
+    body: formdata
+  };
+  const reponse = await fetch(URL + "/works", {
+    method: 'POST',
+    body: formdata,
+    headers: {
+      'Authorization': `BEARER  ${token}` 
+    }
+  });
+  
+    if (reponse.status === 401 || reponse.status === 404){
+      //displayErrorMessage("Erreur dans l'identifiant ou le mot de passe!");
+      throw new Error( " Erreur de chargement !");
+      return null;
+    }
+    else {
+      close_modal2();
+      open_modal();
+    }
+  }
+  catch(e){
+    throw new Error( " ERROR !");
+  }
+}
+*/
 
 export { update };

@@ -1,4 +1,4 @@
-import { afficheGalleries, affiche, affichecategory, func} from "./component/galery.js";
+import { afficheGalleries, affiche, affichecategory, func, addWork} from "./component/galery.js";
 import {update} from "./component/edit.js";
 const token = sessionStorage.getItem("userToken");
 if (token){
@@ -9,6 +9,7 @@ else {
   afficheGalleries();
   affichecategory();
   func();
+  //addWork(formData);
 }
 
 

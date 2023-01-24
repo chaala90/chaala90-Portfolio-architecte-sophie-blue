@@ -33,8 +33,8 @@ async function login(m, p){
     const reponse = await fetch(URL + "/users/login", send)
     .then((res) => {
       if (res.status === 401 || res.status === 404){
-        error.innerText = " Erreur dans l’identifiant ou le mot de passe !";
         //displayErrorMessage("Erreur dans l'identifiant ou le mot de passe!");
+        error.innerText = " Erreur dans l’identifiant ou le mot de passe !";
         return null;
       }
       else {

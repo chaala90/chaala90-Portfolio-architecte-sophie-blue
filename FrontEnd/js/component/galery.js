@@ -1,5 +1,6 @@
 import { URL } from "./api.js";
-const affiche = async () => {
+import {update} from "./edit.js"
+const affiche = async (e) => {
     //recuperer les données avec fetch d'une maniere dynamique
     const list = await fetch(URL + "/works", {
         method: "GET",
@@ -32,6 +33,7 @@ const afficheGalleries = async () => {
         figure.appendChild(title);
     }
 }
+
 //affiche la galerie en fonction de filtre selectionné
 const afficheGalleriesfiltre = async (galerie) => {
     const work = galerie;
@@ -110,4 +112,38 @@ const func = async () => {
 
     }
 }
-export { afficheGalleries, affiche, affichecategory, filtrer, func };
+const addWork = async (formData) => {
+    try {
+        const userToken = sessionStorage.getItem("userToken");
+        const response = await fetch('http://localhost:5678/api/works', {
+            method: 'POST',
+            body: formData, // using formData and letting browser fixing request headers
+            headers: {
+                'Authorization': `Bearer ${userToken}`
+            }
+        });
+        const image = document.getElementById('addButton');
+        const status = response.status;
+        if(status=== 400 || status=== 404){
+            error.innerText ="Echec de la connexion au serveur. Veuillez réessayer.";
+            //throw new Error("Echec de la connexion au serveur. Veuillez réessayer.");
+            //break;
+        }
+        if (!image.match(/\.(jpg|png)$/i)){
+            error.innerText ="Format de l'image n'est pas supporté !";
+           // throw new Error("Format de l'image n'est pas supporté !");
+        }
+        if (image.size > 4194304){
+            error.innerText ="Taille de l'image n'est pas supporté !";
+        }
+        else{
+            update();
+                afficheGalleries();
+        }
+        
+    } catch (e) {
+        console.error(e);
+        
+    }
+};
+export { afficheGalleries, affiche, affichecategory, filtrer, func, addWork };

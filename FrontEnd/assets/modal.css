@@ -21,7 +21,7 @@ a {
 .modal-wrapper {
   position: relative;
   background-color: #fff;
-  margin: 4% auto;
+  margin: 2% auto;
   border-radius: 10px;
   max-width: calc(50vw - 20px);
   max-height: calc(100vh - 20px);
@@ -136,21 +136,18 @@ a {
   margin-bottom: 10px;
 }
 
-.fa-image {
-  font-size: 5em;
+.image {
+  font-size: 6em;
   color: #B9C5CC;
+  margin-top: 9px;
 }
 
 #addButton {
   position: absolute;
-  top: 13em;
-  right: 11em;
-  color: transparent;
+  top: 15em;
+  right: 13em;
+  opacity: 0;
   border: none;
-}
-#addButton:hover{
-  background-color: transparent;
-  color: transparent;
 }
 
 .typeImg {
@@ -214,6 +211,7 @@ background-color: #CBD6DC;
 /*images plus petits*/
 .EditImg{
   width: 7.5em;
+  height: 10em;
     margin-left: 12px;
     margin-bottom: 5px;
 }

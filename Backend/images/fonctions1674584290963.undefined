@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fonction</title>
+    <script >
+       
+       const students =[
+        {
+            name:'john',
+            notes:[1,20,18,19,12]
+        },
+        {
+            name:'jane',
+            notes:[5, 10,15,15,20]
+        },
+        {
+            name:'sophie',
+            notes:[17,12,14,15,13]
+        },
+        {
+            name:'marc',
+            notes:[2,3,5,8,9]
+        },
+        {
+            name:'manon',
+            notes:[18,17,18,19,12]
+        }
+       ]
+       const moyenne = (notes)=>{
+       let sum=0
+       for(let note of notes){
+        sum=sum+note
+       }
+       return sum/notes.length
+    }
+    for (let student of students){
+        student.moyenne = moyenne(student.notes)
+    }
+    console.log(students);
+    const comparer = (a,b)=>{
+       return b.moyenne - a.moyenne
+    }
+      students.sort(comparer)
+      console.log(students);
+       
+    
+    </script>
+</head>
+<body>
+    
+</body>
+
+</html>!

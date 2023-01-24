@@ -89,6 +89,7 @@ li:hover {
 #error{
 	color: #D65353;
 	text-align: center;
+	font-weight:900;
 }
 #contact textarea {
 	border: none;
