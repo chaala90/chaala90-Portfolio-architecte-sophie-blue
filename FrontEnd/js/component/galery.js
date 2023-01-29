@@ -1,7 +1,7 @@
 import { URL } from "./api.js";
 import {update} from "./edit.js"
 const affiche = async (e) => {
-    //recuperer les données avec fetch d'une maniere dynamique
+    //recuperer les données avec fetch d'une maniere dynamique via api
     const list = await fetch(URL + "/works", {
         method: "GET",
         headers: {
@@ -17,7 +17,7 @@ const affiche = async (e) => {
 //afficher les données sur la page web
 //affiche toute la galerie
 const afficheGalleries = async () => {
-    //recuperer le resultat dans work
+    //recuperer le resultat dans la constante work
     const work = await affiche();
     for (let i = 0; i < work.length; i++) {
         const gallery = document.querySelector(".gallery");
@@ -26,8 +26,9 @@ const afficheGalleries = async () => {
         let img = document.createElement("img");
         figure.appendChild(img);
         // img.src = work[i].imageUrl;
-        img.setAttribute("crossorigin", "anonymous");
+        //setattribute(mettre à jr ou definir la valeur dans la source de l'image
         img.setAttribute("src", work[i].imageUrl);
+        img.setAttribute("crossorigin", "anonymous");
         let title = document.createElement("figcaption");
         title.innerHTML = work[i].title;
         figure.appendChild(title);
@@ -92,15 +93,16 @@ const affichecategory = async (elt_category) => {
 //fonction afficher les images de chaque filtre au clic sur le bouton
 const func = async () => {
     const data_work = await affiche();
-
     let boutons = document.getElementsByClassName("bouton_filtre");
     for (let i = 0; i < boutons.length; i++) {
         const elt = boutons[i];
         boutons[i].addEventListener("click", () => {
             console.log(data_work);
+            //getattribute: obtenir la valeur actuelle de l'attribut
             if (elt.getAttribute("data-name") != "Tous") {
                 //console.log("show");
                 document.querySelector(".gallery").innerHTML = "";
+                //cpt: le tri, 
                 const objet = data_work.filter(compteur => compteur.category.name === elt.dataset.name);
                 return afficheGalleriesfiltre(objet);
             }
@@ -129,16 +131,16 @@ const addWork = async (formData) => {
             //throw new Error("Echec de la connexion au serveur. Veuillez réessayer.");
             //break;
         }
-        if (!image.match(/\.(jpg|png)$/i)){
+        /*if (!image.match(/\.(jpg|png)$/i)){
             error.innerText ="Format de l'image n'est pas supporté !";
            // throw new Error("Format de l'image n'est pas supporté !");
         }
         if (image.size > 4194304){
             error.innerText ="Taille de l'image n'est pas supporté !";
-        }
+        }*/
         else{
             update();
-                afficheGalleries();
+            afficheGalleries();
         }
         
     } catch (e) {

@@ -3,8 +3,29 @@ import { afficheGalleries, affiche, addWork } from "./galery.js";
 //import{login} from "./login.js"
 const update = () => {
   //login et logout
-  document.getElementById("login").style.display = "none";
-  document.getElementById("logout").style.display = "block";
+  const login=document.getElementById("login").style.display = "none";
+  const logout=document.getElementById("logout").style.display = "block";
+  /*func logoutquand je cliq logout
+  vider session storage
+  il derige vers pas d'accueil
+  affiche cathegorie*/
+ /* document.querySelector(".title_link").addEventListener("click", ()=>{
+    window.location.replace('/FrontEnd/index.html');
+  })*/
+  /*  const title_link = document.querySelector(".title_link");
+  title_link.addEventListener("click", ()=>{
+    window.location.replace('/FrontEnd/index.html');
+  })
+  const login =document.getElementById("login");
+ // .style.display = "none";
+ login.addEventListener("click", ()=>{
+  login.style.display = "none";
+  logout.style.display = "block";
+ })
+  const logout=document.getElementById("logout");
+  logout.addEventListener("click", ()=>{
+    login.style.display = "none";
+ // .style.display = "block";*/
   //creation des elements
   //black header
   let body = document.getElementsByTagName('body');
@@ -107,7 +128,9 @@ window.addEventListener('keydown',function(e){
       const div_edit = document.createElement('div');
       div_edit.classList.add("icons")
       div_edit.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right addIcon"></i>
-                <i class="fa-solid fa-trash-can trashIcon"></i>`;
+                <i class="fa-solid fa-trash-can trashIcon" data-id=
+                ${work[i].id}></i>`;
+      div_edit.addEventListener("click", supprimer);
       figure.appendChild(div_edit);
       let title = document.createElement("p");
       title.classList.add('edit_text');
@@ -158,17 +181,7 @@ window.addEventListener("click", (e) => {
     close_modal2();
   }
 });
-//supprimer une image
-async function Delete(){
-  const head = new Headers({ "content-type": 'application/json',
-  'accept': '*/*', Authorization: `BEARER  ${token}`});
-  const delete_img = {
-    method: 'DELETE',
-    headers: head
-  };
-  const reponse = await fetch(URL + "/works", delete_img)
-  .then((res) => res.json());
-}
+
 //recuperation des données de formulaire et appel fonction d'ajout
 const  formulaire2= document.getElementById('addImage');
 formulaire2.addEventListener('submit', (e)=>{
@@ -178,51 +191,40 @@ const formData = new FormData(e.target);
 addWork(formData);
 })
 }
-/*const supprimer = async ()=>{
-  const trash = await Delete();
-  for (let i=0; i<11; i++){
-    const trashIcon=document.querySelector('.trashIcon');
-    trashIcon.addEventListener('click', ()=>{
-      if (figure.getAttribute("data-id")){
-        figure.remove(dataset.id)
+//supprimer une image au clic sur corbeille
 
-      }
+const Delete = async (id) => {
+  const userToken = sessionStorage.getItem("userToken");
+  const reponse = await fetch(URL +"/works/"+id, {
+    method: 'DELETE',
+    headers: { "content-type": "application/json",
+    'Authorization': `Bearer ${userToken}`}
   })
+  //.then((res) => res.json());
+  if(reponse.status=== 400 || reponse.status=== 404){
+    error.innerText ="Echec de la connexion au serveur. Veuillez réessayer.";
+}
+else {
+  supprimer();
+}
+}
+const supprimer = async (e)=>{
+  const work = await affiche();
+  let i=0;
+  const trashIcon=document.querySelector('.trashIcon');
+  //trashIcon.setAttribute("data-id", work[i].id);
+  const thisId = trashIcon.dataset.id;
+  const trash = await Delete(thisId);
+  console.log(thisId);
+  //thisId.remove("figure");
+}
+  const trashIcon=document.querySelectorAll('.trashIcon');
+  for (let i=0; i<trashIcon.length; i++){
+    trashIcon[i].addEventListener('click', ()=>{ 
+      console.log('ok');
+      //supprimer(thisId);
+    })
+  }
 
-  }
-}
-//envoyer formulaire ajout photo
-/*async function Envoyer(formdata){
-  try{
-    const token = sessionStorage.getItem("userToken");
-  const head = new Headers({ Authorization: `BEARER  ${token}`});
-  const send_img = {
-    method: 'POST',
-    headers: head,
-    body: formdata
-  };
-  const reponse = await fetch(URL + "/works", {
-    method: 'POST',
-    body: formdata,
-    headers: {
-      'Authorization': `BEARER  ${token}` 
-    }
-  });
-  
-    if (reponse.status === 401 || reponse.status === 404){
-      //displayErrorMessage("Erreur dans l'identifiant ou le mot de passe!");
-      throw new Error( " Erreur de chargement !");
-      return null;
-    }
-    else {
-      close_modal2();
-      open_modal();
-    }
-  }
-  catch(e){
-    throw new Error( " ERROR !");
-  }
-}
-*/
 
 export { update };
