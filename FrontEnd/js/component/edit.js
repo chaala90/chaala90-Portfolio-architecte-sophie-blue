@@ -9,23 +9,7 @@ const update = () => {
   vider session storage
   il derige vers pas d'accueil
   affiche cathegorie*/
- /* document.querySelector(".title_link").addEventListener("click", ()=>{
-    window.location.replace('/FrontEnd/index.html');
-  })*/
-  /*  const title_link = document.querySelector(".title_link");
-  title_link.addEventListener("click", ()=>{
-    window.location.replace('/FrontEnd/index.html');
-  })
-  const login =document.getElementById("login");
- // .style.display = "none";
- login.addEventListener("click", ()=>{
-  login.style.display = "none";
-  logout.style.display = "block";
- })
-  const logout=document.getElementById("logout");
-  logout.addEventListener("click", ()=>{
-    login.style.display = "none";
- // .style.display = "block";*/
+
   //creation des elements
   //black header
   let body = document.getElementsByTagName('body');
@@ -79,7 +63,6 @@ const update = () => {
     document.getElementById("modal1").style.display = "block";
    
   }
-  //***********stop propagation où faut mettre??????????????????????? */
   /*const stopPropagation = (e) => {
     e.stopPropagation();
   };*/
@@ -128,8 +111,7 @@ window.addEventListener('keydown',function(e){
       const div_edit = document.createElement('div');
       div_edit.classList.add("icons")
       div_edit.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right addIcon"></i>
-                <i class="fa-solid fa-trash-can trashIcon" data-id=
-                ${work[i].id}></i>`;
+                <i class="fa-solid fa-trash-can trashIcon" data-id=${work[i].id}></i>`;
       div_edit.addEventListener("click", supprimer);
       figure.appendChild(div_edit);
       let title = document.createElement("p");
@@ -208,21 +190,18 @@ else {
   supprimer();
 }
 }
-const supprimer = async (e)=>{
+const supprimer = async ()=>{
   const work = await affiche();
-  let i=0;
   const trashIcon=document.querySelector('.trashIcon');
   //trashIcon.setAttribute("data-id", work[i].id);
   const thisId = trashIcon.dataset.id;
   const trash = await Delete(thisId);
   console.log(thisId);
-  //thisId.remove("figure");
 }
   const trashIcon=document.querySelectorAll('.trashIcon');
   for (let i=0; i<trashIcon.length; i++){
     trashIcon[i].addEventListener('click', ()=>{ 
-      console.log('ok');
-      //supprimer(thisId);
+      supprimer(thisId);
     })
   }
 
