@@ -1,15 +1,17 @@
 import { URL } from "./api.js";
-import { afficheGalleries, affiche, addWork } from "./galery.js";
+import { afficheGalleries, affiche,afficheGalleriesfiltre,affichecategory,func, addWork } from "./galery.js";
 //import{login} from "./login.js"
+const logoutAccount=() =>{
+  logout.addEventListener["click", ()=>{
+    sessionstorage.clear(userToken);
+    window.location.replace("/FrontEnd/index.html");
+    affichecategory(elt_category);
+    afficheGalleriesfiltre();
+    func();
+    
+  }]
+}
 const update = () => {
-  //login et logout
-  const login=document.getElementById("login").style.display = "none";
-  const logout=document.getElementById("logout").style.display = "block";
-  /*func logoutquand je cliq logout
-  vider session storage
-  il derige vers pas d'accueil
-  affiche cathegorie*/
-
   //creation des elements
   //black header
   let body = document.getElementsByTagName('body');
@@ -112,7 +114,7 @@ window.addEventListener('keydown',function(e){
       div_edit.classList.add("icons")
       div_edit.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right addIcon"></i>
                 <i class="fa-solid fa-trash-can trashIcon" data-id=${work[i].id}></i>`;
-      div_edit.addEventListener("click", supprimer);
+       div_edit.addEventListener("click", supprimer);
       figure.appendChild(div_edit);
       let title = document.createElement("p");
       title.classList.add('edit_text');
@@ -206,4 +208,4 @@ const supprimer = async ()=>{
   }
 
 
-export { update };
+export { update, logoutAccount};

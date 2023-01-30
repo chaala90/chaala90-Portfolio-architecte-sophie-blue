@@ -47,10 +47,11 @@
 						<!--<img src="" alt="" id="imgPreview">-->
 						<i class="fa-regular fa-image"></i>	
 					</div>
-					<input type="file" name="image" accept="/image*" id="addButton" required>				
+					<input type="file" name="image"  (change)="processFile(addButton)" accept="/image*" id="addButton" required>				
 				</input>
 					<button class="addImg" accept=".jpg, .png">+ Ajouter photo</button>
 					<p class="typeImg">jpg, png : 4mo max</p>
+					<label id="errror"> </label>
 				</div>
 				<div class='column'>
 				<label>Titre</label>

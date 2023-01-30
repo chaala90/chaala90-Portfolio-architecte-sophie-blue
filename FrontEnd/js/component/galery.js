@@ -124,28 +124,35 @@ const addWork = async (formData) => {
                 'Authorization': `Bearer ${userToken}`
             }
         });
-        const image = document.getElementById('addButton');
+        
         const status = response.status;
         if(status=== 400 || status=== 404){
-            error.innerText ="Echec de la connexion au serveur. Veuillez réessayer.";
+            errror.innerText ="Echec de la connexion au serveur. Veuillez réessayer.";
             //throw new Error("Echec de la connexion au serveur. Veuillez réessayer.");
             //break;
         }
-        /*if (!image.match(/\.(jpg|png)$/i)){
-            error.innerText ="Format de l'image n'est pas supporté !";
-           // throw new Error("Format de l'image n'est pas supporté !");
-        }
-        if (image.size > 4194304){
-            error.innerText ="Taille de l'image n'est pas supporté !";
-        }*/
+       
         else{
             update();
             afficheGalleries();
         }
-        
-    } catch (e) {
+    }
+        catch (e) {
         console.error(e);
         
     }
-};
-export { afficheGalleries, affiche, affichecategory, filtrer, func, addWork };
+
+}
+/* const submit= document.querySelector(".valider");
+        const image = document.getElementById('addButton');
+        let idDot=image.lastIndexOf(".")+1;
+        let extension=image.substr(idDot, image.length).toLowerCase();
+        submit.addEventListener("submit", ()=>{
+            if ((extension=="jpg" || extension =="png")){
+                error.innerText ="Format de l'image n'est pas supporté !";
+               // throw new Error("Format de l'image n'est pas supporté !");
+            }
+           else{
+            addWork();
+           }*/
+export { afficheGalleries, affiche, affichecategory, afficheGalleriesfiltre, func, addWork };
