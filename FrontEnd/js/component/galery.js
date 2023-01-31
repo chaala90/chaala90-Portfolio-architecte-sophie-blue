@@ -141,4 +141,4 @@ const addWork = async (formData) => {
     }
 }
 
-export { afficheGalleries, affiche, affichecategory, afficheGalleriesfiltre, func, addWork };
+export { afficheGalleries, affiche, affichecategory, addWork };

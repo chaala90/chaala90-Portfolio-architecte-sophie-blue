@@ -1,4 +1,4 @@
-import { afficheGalleries, affiche, afficheGalleriesfiltre,affichecategory, func, addWork} from "./component/galery.js";
+import { afficheGalleries, affiche, affichecategory,  addWork} from "./component/galery.js";
 import {update} from "./component/edit.js";
 // Récupération du champ à enregistrer: usertoken
 const token = sessionStorage.getItem("userToken");
@@ -26,5 +26,5 @@ else {
   afficheGalleries();
   affichecategory();
   func();
-  //addWork(formData);
+  //addWork(formData: mettre update dans edit.js
 }

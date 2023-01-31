@@ -1,5 +1,5 @@
 import { URL } from "./api.js";
-import { afficheGalleries, affiche,afficheGalleriesfiltre,affichecategory,func, addWork } from "./galery.js";
+import { afficheGalleries, affiche, addWork } from "./galery.js";
 
 const update = () => {
   //creation des elements
@@ -20,7 +20,7 @@ const update = () => {
   blackdiv.appendChild(divedit);
   blackdiv.appendChild(btn_edit);
 
-  //creation  de modif pour photo architecte
+  //creation  de modif pour modal aprés
   const figure = document.getElementsByTagName("figure");
   const modifier_photo = document.createElement("div");
   modifier_photo.classList.add("modifier");
@@ -55,9 +55,7 @@ const update = () => {
     //e.preventDefault();
     document.getElementById("modal1").style.display = "block";
   }
-  /*const stopPropagation = (e) => {
-    e.stopPropagation();
-  };*/
+  
   for (let i = 0; i < modifier.length; i++) {
     modifier[i].addEventListener("click", () => {
       open_modal();
@@ -67,7 +65,6 @@ const update = () => {
   }
   //fermer modale avec l'icone x
   const close_modal = () => {
-    //e.preventDefault();
     document.getElementById("modal1").style.display = "none";
   }
   const close = document.querySelector(".modal-close");
