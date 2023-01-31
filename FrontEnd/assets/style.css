@@ -267,4 +267,9 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
-
+#errorFormat, #errorSize{
+	color:#D65353;
+	text-align: center;
+	font-weight:900;
+	margin-bottom: 7px;
+}

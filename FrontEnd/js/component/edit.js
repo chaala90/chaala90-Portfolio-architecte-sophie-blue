@@ -1,16 +1,6 @@
 import { URL } from "./api.js";
 import { afficheGalleries, affiche,afficheGalleriesfiltre,affichecategory,func, addWork } from "./galery.js";
-//import{login} from "./login.js"
-const logoutAccount=() =>{
-  logout.addEventListener["click", ()=>{
-    sessionstorage.clear(userToken);
-    window.location.replace("/FrontEnd/index.html");
-    affichecategory(elt_category);
-    afficheGalleriesfiltre();
-    func();
-    
-  }]
-}
+
 const update = () => {
   //creation des elements
   //black header
@@ -57,13 +47,13 @@ const update = () => {
   portfolio.insertAdjacentElement("afterbegin", modifier_project);
   divedit.setAttribute("href", "#modal1");
   afficheGalleries();
+
   const modal = document.querySelector("#modal1");
   //ouvrir modal au clic
   const modifier = document.querySelectorAll(".modifier");
   const open_modal = () => {
     //e.preventDefault();
     document.getElementById("modal1").style.display = "block";
-   
   }
   /*const stopPropagation = (e) => {
     e.stopPropagation();
@@ -114,7 +104,7 @@ window.addEventListener('keydown',function(e){
       div_edit.classList.add("icons")
       div_edit.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right addIcon"></i>
                 <i class="fa-solid fa-trash-can trashIcon" data-id=${work[i].id}></i>`;
-       div_edit.addEventListener("click", supprimer);
+      div_edit.addEventListener("click", supprimer);
       figure.appendChild(div_edit);
       let title = document.createElement("p");
       title.classList.add('edit_text');
@@ -174,7 +164,23 @@ const formData = new FormData(e.target);
 /*Envoyer(formData);*/
 addWork(formData);
 })
+const addButton = document.getElementById("addButton");
+addButton.addEventListener("change", function() {
+const file = addButton.files[0];
+const fileName = file.name;
+const allowedExtensions = /(\.jpg|\.png)$/i;
+console.log('ok');
+if (!allowedExtensions.exec(fileName)) {
+  errorFormat.innerText="Invalid file format. Please select a PNG or JPG image.";
+  addButton.value = "";
 }
+else
+    if (file.size > 4 * 1024 * 1024) {
+    errorSize.innerText="File size must be less than 4 MB.";
+  }
+});
+}
+
 //supprimer une image au clic sur corbeille
 
 const Delete = async (id) => {
@@ -192,9 +198,9 @@ else {
   supprimer();
 }
 }
-const supprimer = async ()=>{
+const supprimer = async (e)=>{
   const work = await affiche();
-  const trashIcon=document.querySelector('.trashIcon');
+  const trashIcon=e.target;
   //trashIcon.setAttribute("data-id", work[i].id);
   const thisId = trashIcon.dataset.id;
   const trash = await Delete(thisId);
@@ -208,4 +214,4 @@ const supprimer = async ()=>{
   }
 
 
-export { update, logoutAccount};
+export { update};

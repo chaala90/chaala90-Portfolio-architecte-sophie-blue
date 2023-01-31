@@ -128,8 +128,6 @@ const addWork = async (formData) => {
         const status = response.status;
         if(status=== 400 || status=== 404){
             errror.innerText ="Echec de la connexion au serveur. Veuillez réessayer.";
-            //throw new Error("Echec de la connexion au serveur. Veuillez réessayer.");
-            //break;
         }
        
         else{
@@ -141,18 +139,6 @@ const addWork = async (formData) => {
         console.error(e);
         
     }
-
 }
-/* const submit= document.querySelector(".valider");
-        const image = document.getElementById('addButton');
-        let idDot=image.lastIndexOf(".")+1;
-        let extension=image.substr(idDot, image.length).toLowerCase();
-        submit.addEventListener("submit", ()=>{
-            if ((extension=="jpg" || extension =="png")){
-                error.innerText ="Format de l'image n'est pas supporté !";
-               // throw new Error("Format de l'image n'est pas supporté !");
-            }
-           else{
-            addWork();
-           }*/
+
 export { afficheGalleries, affiche, affichecategory, afficheGalleriesfiltre, func, addWork };
