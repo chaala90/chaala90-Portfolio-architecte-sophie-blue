@@ -1,4 +1,4 @@
-import { afficheGalleries, affiche, affichecategory,  addWork} from "./component/galery.js";
+import { afficheGalleries, affiche, affichecategory, func,  addWork} from "./component/galery.js";
 import {update} from "./component/edit.js";
 // Récupération du champ à enregistrer: usertoken
 const token = sessionStorage.getItem("userToken");
@@ -11,6 +11,7 @@ if (token){
     login.innerText="logout";
   //document.getElementById("hidden_login").innerText = "logout";
   login.addEventListener('click', ()=>{
+    window.location.replace("/FrontEnd/index.html");
     sessionStorage.removeItem("userToken");
     login.innerText="login";
     blackheader.style.display="none";
@@ -19,7 +20,7 @@ if (token){
     }
     
   })
-  affichecategory();
+  //affichecategory();
 
 }
 else {
