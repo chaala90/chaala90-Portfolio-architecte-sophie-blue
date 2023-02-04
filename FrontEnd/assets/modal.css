@@ -139,7 +139,7 @@ a {
 .image {
   font-size: 6em;
   color: #B9C5CC;
-  margin-top: 9px;
+ 
 }
 
 #addButton {
@@ -154,7 +154,6 @@ a {
   font-size: 10px;
   color: #444;
   font-weight: 400;
-  margin-bottom: 10px;
 }
 
 .column {

@@ -1,5 +1,5 @@
 import { URL } from "./api.js";
-import {update} from "./edit.js"
+import { update } from "./edit.js"
 const affiche = async (e) => {
     //recuperer les données avec fetch d'une maniere dynamique via api
     const list = await fetch(URL + "/works", {
@@ -124,23 +124,24 @@ const addWork = async (formData) => {
                 'Authorization': `Bearer ${userToken}`
             }
         });
-        
+
         const status = response.status;
-        if(status=== 400 || status=== 404){
-            errror.innerText ="Echec de la connexion au serveur. Veuillez réessayer.";
+        if (status === 400 || status === 404) {
+            errror.innerText = "Echec de la connexion au serveur. Veuillez réessayer.";
         }
-       
-        else{
-            document.querySelector("#modal-gallery").innerHTML='';
+
+        else {
+            document.querySelector("#modal-gallery").innerHTML = '';
             document.querySelector(".gallery").innerHTML = "";
             update();
             afficheGalleries();
         }
     }
-        catch (e) {
+    catch (e) {
         console.error(e);
-        
+
     }
+
 }
 
 export { afficheGalleries, affiche, affichecategory, func, addWork };

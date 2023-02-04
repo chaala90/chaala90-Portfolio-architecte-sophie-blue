@@ -135,13 +135,15 @@ const update = () => {
   formulaire2.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    
+
     /*Envoyer(formData);*/
     addWork(formData);
   })
   const addButton = document.getElementById("addButton");
   const image = document.getElementById('imageloading');
-  addButton.addEventListener("change", function () {
+  function showImage(){
+    let selectedFile;
+  addButton.addEventListener("change", ()=> {
     const file = addButton.files[0];
     const fileName = file.name;
     const allowedExtensions = /(\.jpg|\.png)$/i;
@@ -155,35 +157,22 @@ const update = () => {
         errorFormat.innerText = "";
         errorSize.innerText = "File size must be less than 4 MB.";
       }
-      else {
-        errorFormat.innerText = "";
-        errorSize.innerText = "";
-        imageenregistre.innerText = "Image enregistré!";
-      }
+        const reader = new FileReader();
+        reader.onload =  () =>{
+          selectedFile = reader.result;
+          image.setAttribute('src', selectedFile);
+          image.style.width = '200px'; // desired width
+        image.style.height = '170px'; // keep aspect ratio
+        }
+        reader.readAsDataURL(file);
+        image.style.display=null;
+        document.querySelector('.fa-image').style.display='none';
+        document.querySelector('.addImg').style.display='none';
+        document.querySelector('.typeImg').style.display='none';
+        document.querySelector('#addButton').style.top = '50px';
   });
-  /*addButton.addEventListener('click', function(e) {
-    e.preventDefault();
-  
-    const input = document.querySelector('input[type="file"]');
-    const image = document.querySelector('#imageloading');
-  
-    const file = input.files[0];
-    
-    if (file instanceof Blob) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        image.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    } else {
-      console.error('The selected file is not a Blob');
-    }
-  });*/
-
-
-
-
-
+}
+showImage();
 }
 //afficher images dans le modal
 const afficheGalleries_modal = async () => {
@@ -201,7 +190,7 @@ const afficheGalleries_modal = async () => {
     div_edit.classList.add("icons")
     div_edit.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right addIcon"></i>
                 <i class="fa-solid fa-trash-can trashIcon" data-id=${work[i].id}></i>`;
-                div_edit.addEventListener("click", Delete.bind(this,work[i].id ));
+    div_edit.addEventListener("click", Delete.bind(this, work[i].id));
     figure.appendChild(div_edit);
     let title = document.createElement("p");
     title.classList.add('edit_text');
@@ -226,7 +215,7 @@ const Delete = async (id) => {
     error.innerText = "Echec de la connexion au serveur. Veuillez réessayer.";
   }
   else {
-    document.querySelector("#modal-gallery").innerHTML='';
+    document.querySelector("#modal-gallery").innerHTML = '';
     document.querySelector(".gallery").innerHTML = "";
     afficheGalleries_modal();
     afficheGalleries();
