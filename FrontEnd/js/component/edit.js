@@ -55,7 +55,7 @@ const update = () => {
     //e.preventDefault();
     document.getElementById("modal1").style.display = "block";
   }
-  
+
   for (let i = 0; i < modifier.length; i++) {
     modifier[i].addEventListener("click", () => {
       open_modal();
@@ -79,139 +79,160 @@ const update = () => {
     }
   });
   //fermer en cliquant sur esc
-window.addEventListener('keydown',function(e){
-  if (e.key ==='Escape' || e.key === 'esc'){
-    close_modal();
-  }
-})
-
-  //afficher images dans le modal
-  const afficheGalleries_modal = async () => {
-    const work = await affiche();
-    for (let i = 0; i < work.length; i++) {
-      const modal_gallery = document.querySelector("#modal-gallery");
-      const figure = document.createElement("figure");
-      modal_gallery.appendChild(figure);
-      let img = document.createElement("img");
-      img.classList.add("EditImg");
-      figure.appendChild(img);
-      img.setAttribute("crossorigin", "anonymous");
-      img.setAttribute("src", work[i].imageUrl);
-      const div_edit = document.createElement('div');
-      div_edit.classList.add("icons")
-      div_edit.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right addIcon"></i>
-                <i class="fa-solid fa-trash-can trashIcon" data-id=${work[i].id}></i>`;
-      div_edit.addEventListener("click", supprimer);
-      figure.appendChild(div_edit);
-      let title = document.createElement("p");
-      title.classList.add('edit_text');
-      title.innerHTML = "editer";
-      figure.appendChild(title);
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'esc') {
+      close_modal();
     }
+  })
+
+
+  //open modal2
+  const modal2 = document.getElementById("modal2");
+  const open_modal2 = () => {
+    //e.preventDefault();
+    document.getElementById("modal2").style.display = "block";
   }
-//open modal2
-const modal2 = document.getElementById("modal2");
-const open_modal2 = () => {
-  //e.preventDefault();
-  document.getElementById("modal2").style.display = "block";
-}
-const modalAdd = document.getElementById("modal-add");
-modalAdd.addEventListener("click", () => {
-  open_modal2();
-});
+  const modalAdd = document.getElementById("modal-add");
+  modalAdd.addEventListener("click", () => {
+    open_modal2();
+  });
 
-//previous modal
-const previous_modal = () => {
-  //document.getElementById('modal1').style.display = "block";
-  document.getElementById("modal2").style.display = "none";
-}
-const previous = document.querySelector(".previous");
-previous.addEventListener("click", () => {
-  previous_modal();
-})
-//fermer modale avec l'icone x
-const close_modal2 = () => {
-  //e.preventDefault();
-  document.getElementById("modal2").style.display = "none";
-}
-const close2 = document.querySelector(".modal-close2");
-close2.addEventListener("click", () => {
-  close_modal2();
-
-});
- //fermer en cliquant sur esc
- window.addEventListener('keydown',function(e){
-  if (e.key ==='Escape' || e.key === 'esc'){
+  //previous modal
+  const previous_modal = () => {
+    //document.getElementById('modal1').style.display = "block";
+    document.getElementById("modal2").style.display = "none";
+  }
+  const previous = document.querySelector(".previous");
+  previous.addEventListener("click", () => {
+    previous_modal();
+  })
+  //fermer modale avec l'icone x
+  const close_modal2 = () => {
+    //e.preventDefault();
+    document.getElementById("modal2").style.display = "none";
+  }
+  const close2 = document.querySelector(".modal-close2");
+  close2.addEventListener("click", () => {
     close_modal2();
-  }
-})
 
-//fermer en cliquant n'importe ou
-window.addEventListener("click", (e) => {
-  if (e.target == modal2) {
-    close_modal2();
-  }
-});
+  });
+  //fermer en cliquant sur esc
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'esc') {
+      close_modal2();
+    }
+  })
 
-//recuperation des données de formulaire et appel fonction d'ajout
-const  formulaire2= document.getElementById('addImage');
-formulaire2.addEventListener('submit', (e)=>{
-e.preventDefault();
-const formData = new FormData(e.target);
-/*Envoyer(formData);*/
-addWork(formData);
-})
-const addButton = document.getElementById("addButton");
-addButton.addEventListener("change", function() {
-const file = addButton.files[0];
-const fileName = file.name;
-const allowedExtensions = /(\.jpg|\.png)$/i;
-console.log('ok');
-if (!allowedExtensions.exec(fileName)) {
-  errorFormat.innerText="Invalid file format. Please select a PNG or JPG image.";
-  addButton.value = "";
+  //fermer en cliquant n'importe ou
+  window.addEventListener("click", (e) => {
+    if (e.target == modal2) {
+      close_modal2();
+    }
+  });
+
+  //recuperation des données de formulaire et appel fonction d'ajout
+  const formulaire2 = document.getElementById('addImage');
+  formulaire2.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    
+    /*Envoyer(formData);*/
+    addWork(formData);
+  })
+  const addButton = document.getElementById("addButton");
+  const image = document.getElementById('imageloading');
+  addButton.addEventListener("change", function () {
+    const file = addButton.files[0];
+    const fileName = file.name;
+    const allowedExtensions = /(\.jpg|\.png)$/i;
+    console.log('ok');
+    if (!allowedExtensions.exec(fileName)) {
+      errorFormat.innerText = "Invalid file format. Please select a PNG or JPG image.";
+      addButton.value = "";
+    }
+    else
+      if (file.size > 4 * 1024 * 1024) {
+        errorFormat.innerText = "";
+        errorSize.innerText = "File size must be less than 4 MB.";
+      }
+      else {
+        errorFormat.innerText = "";
+        errorSize.innerText = "";
+        imageenregistre.innerText = "Image enregistré!";
+      }
+  });
+  /*addButton.addEventListener('click', function(e) {
+    e.preventDefault();
+  
+    const input = document.querySelector('input[type="file"]');
+    const image = document.querySelector('#imageloading');
+  
+    const file = input.files[0];
+    
+    if (file instanceof Blob) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        image.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      console.error('The selected file is not a Blob');
+    }
+  });*/
+
+
+
+
+
 }
-else
-    if (file.size > 4 * 1024 * 1024) {
-    errorSize.innerText="File size must be less than 4 MB.";
+//afficher images dans le modal
+const afficheGalleries_modal = async () => {
+  const work = await affiche();
+  for (let i = 0; i < work.length; i++) {
+    const modal_gallery = document.querySelector("#modal-gallery");
+    const figure = document.createElement("figure");
+    modal_gallery.appendChild(figure);
+    let img = document.createElement("img");
+    img.classList.add("EditImg");
+    figure.appendChild(img);
+    img.setAttribute("crossorigin", "anonymous");
+    img.setAttribute("src", work[i].imageUrl);
+    const div_edit = document.createElement('div');
+    div_edit.classList.add("icons")
+    div_edit.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right addIcon"></i>
+                <i class="fa-solid fa-trash-can trashIcon" data-id=${work[i].id}></i>`;
+                div_edit.addEventListener("click", Delete.bind(this,work[i].id ));
+    figure.appendChild(div_edit);
+    let title = document.createElement("p");
+    title.classList.add('edit_text');
+    title.innerHTML = "editer";
+    figure.appendChild(title);
   }
-  else {
-    imageenregistre.innerText="Image enregistré!";
-  }
-});
 }
 
 //supprimer une image au clic sur corbeille
 
 const Delete = async (id) => {
   const userToken = sessionStorage.getItem("userToken");
-  const reponse = await fetch(URL +"/works/"+id, {
+  const reponse = await fetch(URL + "/works/" + id, {
     method: 'DELETE',
-    headers: { "content-type": "application/json",
-    'Authorization': `Bearer ${userToken}`}
+    headers: {
+      "content-type": "application/json",
+      'Authorization': `Bearer ${userToken}`
+    }
   })
   //.then((res) => res.json());
-  if(reponse.status=== 400 || reponse.status=== 404){
-    error.innerText ="Echec de la connexion au serveur. Veuillez réessayer.";
-}
-else {
-  supprimer();
-}
-}
-const supprimer = async (e)=>{
-  const work = await affiche();
-  const trashIcon=e.target;
-  //trashIcon.setAttribute("data-id", work[i].id);
-  const thisId = trashIcon.dataset.id;
-  const trash = await Delete(thisId);
-  console.log(thisId);
-}
-  const trashIcon=document.querySelectorAll('.trashIcon');
-  for (let i=0; i<trashIcon.length; i++){
-    trashIcon[i].addEventListener('click', (e)=>{ 
-      supprimer(e);
-    })
+  if (reponse.status === 400 || reponse.status === 404) {
+    error.innerText = "Echec de la connexion au serveur. Veuillez réessayer.";
   }
+  else {
+    document.querySelector("#modal-gallery").innerHTML='';
+    document.querySelector(".gallery").innerHTML = "";
+    afficheGalleries_modal();
+    afficheGalleries();
+
+  }
+}
 
 
-export { update};
+export { update, afficheGalleries_modal };

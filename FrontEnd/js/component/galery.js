@@ -131,6 +131,8 @@ const addWork = async (formData) => {
         }
        
         else{
+            document.querySelector("#modal-gallery").innerHTML='';
+            document.querySelector(".gallery").innerHTML = "";
             update();
             afficheGalleries();
         }
