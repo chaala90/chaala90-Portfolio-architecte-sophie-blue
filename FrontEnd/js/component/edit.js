@@ -175,6 +175,9 @@ else
     if (file.size > 4 * 1024 * 1024) {
     errorSize.innerText="File size must be less than 4 MB.";
   }
+  else {
+    imageenregistre.innerText="Image enregistré!";
+  }
 });
 }
 
@@ -205,8 +208,8 @@ const supprimer = async (e)=>{
 }
   const trashIcon=document.querySelectorAll('.trashIcon');
   for (let i=0; i<trashIcon.length; i++){
-    trashIcon[i].addEventListener('click', ()=>{ 
-      supprimer(thisId);
+    trashIcon[i].addEventListener('click', (e)=>{ 
+      supprimer(e);
     })
   }
 
