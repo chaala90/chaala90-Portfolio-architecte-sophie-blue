@@ -139,6 +139,7 @@ const update = () => {
     /*Envoyer(formData);*/
     addWork(formData);
   })
+  //affiche erreur si format ou volume grand et affiche image dans le formulaire 
   const addButton = document.getElementById("addButton");
   const image = document.getElementById('imageloading');
   function showImage(){

@@ -1,5 +1,5 @@
 import { URL } from "./api.js";
-import { update } from "./edit.js"
+import { afficheGalleries_modal, update } from "./edit.js"
 const affiche = async (e) => {
     //recuperer les données avec fetch d'une maniere dynamique via api
     const list = await fetch(URL + "/works", {
@@ -133,7 +133,7 @@ const addWork = async (formData) => {
         else {
             document.querySelector("#modal-gallery").innerHTML = '';
             document.querySelector(".gallery").innerHTML = "";
-            update();
+            afficheGalleries_modal();
             afficheGalleries();
         }
     }
