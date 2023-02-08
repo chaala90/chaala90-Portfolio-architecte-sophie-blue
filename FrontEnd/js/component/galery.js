@@ -1,7 +1,8 @@
 import { URL } from "./api.js";
-import { afficheGalleries_modal, update } from "./edit.js"
-const affiche = async (e) => {
-    //recuperer les données avec fetch d'une maniere dynamique via api
+import { update, close_modal2 } from "./edit.js";
+import { afficheGalleries_modal, close_modal, open_modal } from "./modal.js";
+const affiche = async () => {
+    //recuperer les données avec fetch d'une maniere dynamique
     const list = await fetch(URL + "/works", {
         method: "GET",
         headers: {
@@ -17,30 +18,30 @@ const affiche = async (e) => {
 //afficher les données sur la page web
 //affiche toute la galerie
 const afficheGalleries = async () => {
-    //recuperer le resultat dans la constante work
+    //recuperer le resultat dans work
     const work = await affiche();
     for (let i = 0; i < work.length; i++) {
         const gallery = document.querySelector(".gallery");
         const figure = document.createElement("figure");
+        figure.setAttribute("data-id", work[i].id);
         gallery.appendChild(figure);
         let img = document.createElement("img");
         figure.appendChild(img);
         // img.src = work[i].imageUrl;
-        //setattribute(mettre à jr ou definir la valeur dans la source de l'image
-        img.setAttribute("src", work[i].imageUrl);
         img.setAttribute("crossorigin", "anonymous");
+        img.setAttribute("src", work[i].imageUrl);
         let title = document.createElement("figcaption");
         title.innerHTML = work[i].title;
         figure.appendChild(title);
     }
 }
-
 //affiche la galerie en fonction de filtre selectionné
 const afficheGalleriesfiltre = async (galerie) => {
     const work = galerie;
     for (let i = 0; i < work.length; i++) {
         const gallery = document.querySelector(".gallery");
         const figure = document.createElement("figure");
+        figure.setAttribute("data-id", work[i].id);
         gallery.appendChild(figure);
         let img = document.createElement("img");
         figure.appendChild(img);
@@ -93,16 +94,15 @@ const affichecategory = async (elt_category) => {
 //fonction afficher les images de chaque filtre au clic sur le bouton
 const func = async () => {
     const data_work = await affiche();
+
     let boutons = document.getElementsByClassName("bouton_filtre");
     for (let i = 0; i < boutons.length; i++) {
         const elt = boutons[i];
         boutons[i].addEventListener("click", () => {
             console.log(data_work);
-            //getattribute: obtenir la valeur actuelle de l'attribut
             if (elt.getAttribute("data-name") != "Tous") {
                 //console.log("show");
                 document.querySelector(".gallery").innerHTML = "";
-                //cpt: le tri, 
                 const objet = data_work.filter(compteur => compteur.category.name === elt.dataset.name);
                 return afficheGalleriesfiltre(objet);
             }
@@ -114,6 +114,7 @@ const func = async () => {
 
     }
 }
+
 const addWork = async (formData) => {
     try {
         const userToken = sessionStorage.getItem("userToken");
@@ -124,24 +125,54 @@ const addWork = async (formData) => {
                 'Authorization': `Bearer ${userToken}`
             }
         });
-
         const status = response.status;
         if (status === 400 || status === 404) {
-            errror.innerText = "Echec de la connexion au serveur. Veuillez réessayer.";
+            throw new Error("Echec de la connexion au serveur. Veuillez réessayer.");
+            //break;
         }
-
         else {
+            const image = document.getElementById('imageloading');
             document.querySelector("#modal-gallery").innerHTML = '';
             document.querySelector(".gallery").innerHTML = "";
+            close_modal2();
+            open_modal();
             afficheGalleries_modal();
             afficheGalleries();
+            addButton.value = "";
+            image.style.display = "none";
+            image.src = "";
+            document.querySelector('.fa-image').style.display = null;
+            document.querySelector('.addImg').style.display = null;
+            document.querySelector('.typeImg').style.display = null;
+            document.querySelector('#addButton').style.top = null;
         }
-    }
-    catch (e) {
+
+    } catch (e) {
         console.error(e);
 
     }
+};
 
+const Delete = async (id) => {
+    const userToken = sessionStorage.getItem("userToken");
+    const reponse = await fetch(URL + "/works/" + id, {
+        method: 'DELETE',
+        headers: {
+            "content-type": "application/json",
+            'Authorization': `Bearer ${userToken}`
+        }
+    })
+    //.then((res) => res.json());
+    if (reponse.status === 400 || reponse.status === 404) {
+        error.innerText = "Echec de la connexion au serveur. Veuillez réessayer.";
+    }
+    else {
+        document.querySelector("#modal-gallery").innerHTML = '';
+        document.querySelector(".gallery").innerHTML = "";
+        afficheGalleries_modal();
+        afficheGalleries();
+
+    }
 }
 
-export { afficheGalleries, affiche, affichecategory, func, addWork };
+export { afficheGalleries, affiche, affichecategory, filtrer, func, addWork, Delete };
